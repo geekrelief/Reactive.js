@@ -6,7 +6,9 @@
       var rf = function() {
         var dirtyNodes = topo(rf);
         var v = dirtyNodes[0].run.apply(rf, arguments);
-        dirtyNodes.slice(1).forEach(function (n) { n.run() } );
+        if (arguments.length) {
+            dirtyNodes.slice(1).forEach(function (n) { n.run() } );
+        }
         return v;
       };
       rf.id = __id++;
